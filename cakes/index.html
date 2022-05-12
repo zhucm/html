@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>cakes</title>
+
+</head>
+<body class="body-bg">
+	
+
+<script src="/cakes/js/jquery-1.11.3.min.js"></script>
+
+
+<script>
+
+
+
+// 配送省份
+var postinfoProvince;
+
+
+
+ var sevenDayData=[];
+
+
+
+
+$(function(){  
+  //首次加载
+  getCakes();
+             
+  })
+
+
+
+  function getCakes(){
+           
+      var param = {}
+      var busInfo = {}
+
+      $.ajax({
+        type : "post",
+        async : false,
+        dataType : "json",
+        data: param,
+        url : "http://www.yotooapp.com/scripts/cake/query_cake.php",
+        success : function(ret) {
+	        console.log("success")
+				var list = ret.result
+				for(var i=0;i<list.length;i++){
+					document.write(list[i].res_name+'<p>')
+					document.write('<img src="http://www.yotooapp.com'+list[i].path+'" width="300" height="300"/><p>')
+					// console.log('<img src="http://www.yotooapp.com'+list[i].path+'"/>')
+				}
+			}
+		});
+	}
+
+
+
+  </script>
+
+  </body>
+</html>
